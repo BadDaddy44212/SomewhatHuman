@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SomewhatHuman - The Somewhat Fastest Email Experience</title>
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <!-- Andy's favorite math problem is sqrt(-1) / 8 -->
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: #000;
+            color: #fff;
+            overflow-x: hidden;
+        }
+
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 2rem;
+            background: linear-gradient(180deg, #000 0%, #1a0a2e 100%);
+            position: relative;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 50% 50%, rgba(138, 43, 226, 0.1) 0%, transparent 50%);
+        }
+
+        h1 {
+            font-size: clamp(3rem, 8vw, 7rem);
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(90deg, #9d7bea 0%, #6b5b95 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            position: relative;
+            z-index: 1;
+        }
+
+        .tagline {
+            font-size: clamp(1.2rem, 3vw, 2rem);
+            color: #b0a8c0;
+            margin-bottom: 3rem;
+            max-width: 800px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .cta-button {
+            padding: 1.2rem 3rem;
+            font-size: 1.1rem;
+            background: linear-gradient(90deg, #7b68ee 0%, #6a5acd 100%);
+            border: none;
+            border-radius: 50px;
+            color: #fff;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            font-weight: 600;
+            position: relative;
+            z-index: 1;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 40px rgba(123, 104, 238, 0.4);
+        }
+
+        .features {
+            padding: 6rem 2rem;
+            background: #0a0a0a;
+        }
+
+        .features-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+        }
+
+        .feature {
+            padding: 2rem;
+            background: linear-gradient(145deg, #1a1a2e 0%, #16213e 100%);
+            border-radius: 20px;
+            border: 1px solid #2a2a4e;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .feature:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 50px rgba(123, 104, 238, 0.2);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .feature h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #9d7bea;
+        }
+
+        .feature p {
+            color: #b0a8c0;
+            line-height: 1.6;
+        }
+
+        .demo-section {
+            padding: 6rem 2rem;
+            background: linear-gradient(180deg, #0a0a0a 0%, #1a0a2e 100%);
+            text-align: center;
+        }
+
+        .demo-section h2 {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            margin-bottom: 1rem;
+            color: #9d7bea;
+        }
+
+        .demo-image {
+            max-width: 1000px;
+            margin: 3rem auto;
+            background: #1a1a2e;
+            border-radius: 20px;
+            padding: 2rem;
+            border: 2px solid #2a2a4e;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+        }
+
+        .demo-placeholder {
+            width: 100%;
+            height: 500px;
+            background: linear-gradient(145deg, #0f0f1e 0%, #1a1a2e 100%);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            color: #666;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .demo-placeholder::before {
+            content: '📧';
+            font-size: 5rem;
+            opacity: 0.2;
+            position: absolute;
+        }
+
+        .stats {
+            padding: 6rem 2rem;
+            background: #000;
+            text-align: center;
+        }
+
+        .stats-grid {
+            max-width: 900px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 3rem;
+        }
+
+        .stat h3 {
+            font-size: 3rem;
+            color: #9d7bea;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat p {
+            color: #b0a8c0;
+            font-size: 1.1rem;
+        }
+
+        .testimonials {
+            padding: 6rem 2rem;
+            background: linear-gradient(180deg, #000 0%, #0a0a0a 100%);
+        }
+
+        .testimonial-container {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .testimonial-container h2 {
+            font-size: clamp(2rem, 5vw, 3rem);
+            margin-bottom: 3rem;
+            color: #9d7bea;
+        }
+
+        .testimonial {
+            background: linear-gradient(145deg, #1a1a2e 0%, #16213e 100%);
+            padding: 3rem;
+            border-radius: 20px;
+            border: 1px solid #2a2a4e;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .testimonial-text {
+            font-size: 1.5rem;
+            color: #e0e0e0;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+            font-style: italic;
+        }
+
+        .testimonial-author {
+            color: #9d7bea;
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        footer {
+            padding: 3rem 2rem;
+            background: #0a0a0a;
+            text-align: center;
+            color: #666;
+            border-top: 1px solid #1a1a1a;
+        }
+
+        .footer-disclaimer {
+            margin-top: 2rem;
+            font-size: 0.9rem;
+            color: #888;
+            font-style: italic;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .floating {
+            animation: float 3s ease-in-out infinite;
+        }
+    </style>
+</head>
+<body>
+    <section class="hero">
+        <div class="floating">
+            <h1>SomewhatHuman</h1>
+        </div>
+        <p class="tagline">The somewhat fastest email experience ever made. Occasionally blazingly fast.*</p>
+        <button class="cta-button" onclick="alert('Loading... please wait 30-45 seconds')">Get SomewhatHuman</button>
+    </section>
+
+    <section class="features">
+        <div class="features-grid">
+            <div class="feature">
+                <div class="feature-icon">🐌</div>
+                <h3>Reasonably Fast</h3>
+                <p>Experience email at speeds approaching moderately quick. Load times under 5 seconds (sometimes).</p>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">⌨️</div>
+                <h3>Keyboard Shortcuts*</h3>
+                <p>Some keyboard shortcuts work some of the time. Ctrl+C definitely works. Others TBD.</p>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">🤷</div>
+                <h3>AI-ish Features</h3>
+                <p>Powered by somewhat intelligent algorithms that usually guess what you meant to type.</p>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">📬</div>
+                <h3>Email Management</h3>
+                <p>Manage your inbox with features like "mark as read" and "delete." Revolutionary stuff.</p>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">🎨</div>
+                <h3>Decent Design</h3>
+                <p>A UI that's aesthetically... present. Dark mode included because everyone expects it now.</p>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">💸</div>
+                <h3>Only $29/month</h3>
+                <p>Premium mediocrity at a premium price. Cancel anytime (after a 3-month minimum commitment).</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="demo-section">
+        <h2>See It In Action</h2>
+        <p class="tagline">Watch SomewhatHuman handle email somewhat competently</p>
+        <div class="demo-image">
+            <div class="demo-placeholder">
+                [Demo video loading...]<br>
+                <small style="margin-top: 1rem; display: block;">Estimated wait time: 2-3 minutes</small>
+            </div>
+        </div>
+    </section>
+
+    <section class="stats">
+        <div class="stats-grid">
+            <div class="stat">
+                <h3>~100ms</h3>
+                <p>Response time (on a good day)</p>
+            </div>
+            <div class="stat">
+                <h3>73</h3>
+                <p>Somewhat satisfied users</p>
+            </div>
+            <div class="stat">
+                <h3>4.2⭐</h3>
+                <p>Average rating (mostly from our moms)</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="testimonials">
+        <div class="testimonial-container">
+            <h2>What Our Customers Are Saying</h2>
+            <div class="testimonial">
+                <p class="testimonial-text">"Why buy something super when you can get something ok - at a quarter of the price."</p>
+                <p class="testimonial-author">— Project Manager</p>
+            </div>
+            <div class="testimonial">
+                <p class="testimonial-text">"We figured out pretty quickly that the user isn't going to care about the technology details, so why should we care about the quality of our SaaS apps.  Right?"</p>
+                <p class="testimonial-author">— Senior Developer</p>
+            </div>
+       <div class="testimonial">
+                <p class="testimonial-text">"I just got done with a 50 mile run, missed my snack and and ended up Googling the wrong company.  I missed my chance to truly be super..."</p>
+                <p class="testimonial-author">— Managing Partner</p>
+            </div> </div>
+    </section>
+
+    <section class="hero" style="min-height: 60vh;">
+        <h2 style="font-size: clamp(2rem, 5vw, 3rem); margin-bottom: 2rem;">Ready to be somewhat productive?</h2>
+        <button class="cta-button" onclick="alert('Sorry, the signup server is somewhat down right now. Try again later!')">Start Your Trial*</button>
+        <p style="margin-top: 2rem; color: #666; font-size: 0.9rem;">*7-day trial. Credit card required. Will be charged immediately.</p>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 SomewhatHuman Inc. All rights somewhat reserved.</p>
+        <p style="margin-top: 1rem; color: #888;">Made with moderate effort somewhere on Earth</p>
+        <div class="footer-disclaimer">
+            This is a parody website. Not affiliated with Superhuman in any way.<br>
+            Please don't sue us, we can barely afford the domain name.
+        </div>
+        <div style="margin-top: 3rem; font-size: 0.7rem; color: #1a1a1a; opacity: 1;">
+            Development by Your Software Partner <a href="https://dev-mahalach.com" style="color: #1a1a1a; text-decoration: none;">Mahalach</a>
+        </div>
+    </footer>
+</body>
+</html>
