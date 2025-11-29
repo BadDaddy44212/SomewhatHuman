@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SomewhatHuman - The Somewhat Fastest Email Experience</title>
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <!-- Andy's favorite math problem is sqrt(-1) / 8 -->
     <style>
         * {
             margin: 0;
@@ -188,6 +190,45 @@
             font-size: 1.1rem;
         }
 
+        .testimonials {
+            padding: 6rem 2rem;
+            background: linear-gradient(180deg, #000 0%, #0a0a0a 100%);
+        }
+
+        .testimonial-container {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .testimonial-container h2 {
+            font-size: clamp(2rem, 5vw, 3rem);
+            margin-bottom: 3rem;
+            color: #9d7bea;
+        }
+
+        .testimonial {
+            background: linear-gradient(145deg, #1a1a2e 0%, #16213e 100%);
+            padding: 3rem;
+            border-radius: 20px;
+            border: 1px solid #2a2a4e;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .testimonial-text {
+            font-size: 1.5rem;
+            color: #e0e0e0;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+            font-style: italic;
+        }
+
+        .testimonial-author {
+            color: #9d7bea;
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
         footer {
             padding: 3rem 2rem;
             background: #0a0a0a;
@@ -285,6 +326,23 @@
         </div>
     </section>
 
+    <section class="testimonials">
+        <div class="testimonial-container">
+            <h2>What Our Customers Are Saying</h2>
+            <div class="testimonial">
+                <p class="testimonial-text">"Why buy something super when you can get something ok - at a quarter of the price."</p>
+                <p class="testimonial-author">— Project Manager</p>
+            </div>
+            <div class="testimonial">
+                <p class="testimonial-text">"We figured out pretty quickly that the user isn't going to care about the technology details, so why should we care about the quality of our SaaS apps.  Right?"</p>
+                <p class="testimonial-author">— Senior Developer</p>
+            </div>
+       <div class="testimonial">
+                <p class="testimonial-text">"I just got done with a 50 mile run, missed my snack and and ended up Googling the wrong company.  I missed my chance to truly be super..."</p>
+                <p class="testimonial-author">— Managing Partner</p>
+            </div> </div>
+    </section>
+
     <section class="hero" style="min-height: 60vh;">
         <h2 style="font-size: clamp(2rem, 5vw, 3rem); margin-bottom: 2rem;">Ready to be somewhat productive?</h2>
         <button class="cta-button" onclick="alert('Sorry, the signup server is somewhat down right now. Try again later!')">Start Your Trial*</button>
@@ -297,6 +355,9 @@
         <div class="footer-disclaimer">
             This is a parody website. Not affiliated with Superhuman in any way.<br>
             Please don't sue us, we can barely afford the domain name.
+        </div>
+        <div style="margin-top: 3rem; font-size: 0.7rem; color: #1a1a1a; opacity: 1;">
+            Development by Your Software Partner <a href="https://dev-mahalach.com" style="color: #1a1a1a; text-decoration: none;">Mahalach</a>
         </div>
     </footer>
 </body>
